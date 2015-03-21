@@ -28,7 +28,7 @@ var React   = require('react');
             this.setState({ value: value });
 
             // call onChange prop if provided by parent
-            this.props.onChange && this.props.onChange(this.state.value);
+            this.props.onChange && this.props.onChange(value);
         },
 
         render: function() {
