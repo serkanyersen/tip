@@ -1,0 +1,12 @@
+{
+    "undef": false,
+    "expr": true,
+    "trailing": true,
+    "devel": true,
+    "eqeqeq": true,
+    "browser": true,
+    "es3": true,
+    "globals": {
+        "_": true
+    }
+}
