@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         less: {
-            development: {
+            build: {
                 files: {
                     'app/build/style.css': 'app/style/main.less'
                 }
@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 ]
             },
 
-            development: {
+            build: {
                 src: 'app/js/app.jsx',
                 dest: 'app/build/app.js'
             }
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                     'app/js/*.js',
                     'app/js/**/*.jsx'
                 ],
-                tasks: ['browserify:development'],
+                tasks: ['browserify:build'],
                 options: {
                     spawn: false,
                     interrupt: true
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 files: [
                     'app/**/*.less'
                 ],
-                tasks: ['less:development'],
+                tasks: ['less:build'],
                 options: {
                     spawn: false
                 }
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         },
 
         connect: {
-            development: {
+            dev: {
                 options: {
                     port: 8000,
                     hostname: 'localhost',
@@ -84,13 +84,13 @@ module.exports = function(grunt) {
 
     grunt.registerTask('server', function () {
 
-        grunt.task.run(['connect:development', 'less:development', 'browserify:development', 'watch']);
+        grunt.task.run(['connect:dev', 'less:build', 'browserify:build', 'watch']);
 
     });
 
     grunt.registerTask('build', function () {
 
-        grunt.task.run(['less:development', 'browserify:development']);
+        grunt.task.run(['less:build', 'browserify:build']);
 
     });
 };
