@@ -1,10 +1,10 @@
 (function() {
 
     var React = require('react'),
-        Container = require('./components/container.jsx');
+        Main = require('./components/main.jsx');
 
     // Needed for React Developer Tools
     window.React = React;
 
-    React.render(<Container />, document.getElementById('content'));
+    React.render(<Main />, document.getElementById('content'));
 })();
