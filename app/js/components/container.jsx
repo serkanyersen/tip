@@ -35,45 +35,52 @@ var React   = require('react');
         },
 
         getTotalAmount: function() {
-            console.log(this.state.amount, this.state.people);
             return (
                 (parseFloat(this.state.amount) / (parseFloat(this.state.people))
             ) + parseFloat(this.getTipAmount())).toFixed(2);
         },
 
         render: function() {
+            var subheader;
+            if (this.state.people > 1) {
+                subheader = <div className="sub header">Per Person</div>;
+            }
+
             return (
                 <Segment className="tall piled">
                     <Header>
-                        <Icon className="calculator" />
                         <div className="content">
                             Tip Calculator
                         </div>
                     </Header>
                     <Divider />
 
-                    <div className="ui form">
-                        <div className="two fields">
-                            <div className="ten wide field">
-                                <Amount onChange={this.handleAmount} />
-                            </div>
-                            <div className="six wide field">
-                                <People defaultValue={this.state.people} onChange={this.handlePeople} />
-                            </div>
+                    <div className="ui grid">
+                        <div className="ten wide column">
+                            <Amount onChange={this.handleAmount} />
                         </div>
-                        <div className="field">
+                        <div className="six wide column">
+                            <People defaultValue={this.state.people} onChange={this.handlePeople} />
+                        </div>
+                    </div>
+                    <div className="ui grid">
+                        <div className="sixteen wide column">
                             <Tip defaultValue={this.state.percentage} onChange={this.handlePercentage} />
                         </div>
-                        <Divider />
-
-                        <div className="two fields">
-                            <div className="field">
-                                <Header>Tip</Header>
+                        <div className="ui vertically padded grid">
+                            <div className="result-section eight wide column">
+                                <Header>
+                                    Tip
+                                    {subheader}
+                                </Header>
                                 <Divider />
                                 ${this.getTipAmount()}
                             </div>
-                            <div className="field">
-                                <Header>Total</Header>
+                            <div className="result-section eight wide column">
+                                <Header>
+                                    Total
+                                    {subheader}
+                                </Header>
                                 <Divider />
                                 ${this.getTotalAmount()}
                             </div>

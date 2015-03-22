@@ -36,7 +36,7 @@ var React   = require('react');
                 options = this.state.options,
                 className = options.length + " fluid ui buttons";
                 buttons = options.map(function (item){
-                    var selected = value === item.value? 'active' : '';
+                    var selected = value === item.value? 'active green' : '';
 
                     return <Button key={item.value} value={item.value} className={selected}> {item.text} </Button>;
                 });
