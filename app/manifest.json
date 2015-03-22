@@ -1,6 +1,10 @@
 {
     "name": "Tip Calculator",
+    "manifest_version": 1,
+    "version": "0.0.1",
+    "description": "Tip Calculator written in React and Semantic UI as an exercise",
     "display": "standalone",
+    "offline_enabled": true,
     "icons": [{
         "src": "images/android-icon-36x36.png",
         "sizes": "36x36",
