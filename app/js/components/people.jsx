@@ -2,7 +2,7 @@ var React   = require('react');
     sui     = require('react-semantify'),
     Icon    = sui.Icon,
 
-    Amount  = React.createClass({
+    People  = React.createClass({
 
         getInitialState: function() {
             return { value: this.props.defaultValue };
@@ -18,14 +18,15 @@ var React   = require('react');
             return (
                 <div className="ui fluid left icon input">
                     <input type="number"
-                           placeholder="Bill Amount..."
-                           min="0"
+                           min="1"
+                           max="20"
+                           placeholder="People..."
                            value={value}
                            onChange={this.handleChange} />
-                    <Icon className="dollar" />
+                    <Icon className="add user" />
                 </div>
             );
         }
     });
 
-module.exports = Amount;
+module.exports = People;

@@ -3,7 +3,9 @@ var React   = require('react');
     Segment = sui.Segment,
     Divider = sui.Divider,
     Header  = sui.Header,
+    Icon    = sui.Icon,
     Amount  = require('./amount.jsx'),
+    People  = require('./people.jsx'),
     Tip     = require('./tip.jsx'),
 
     Container = React.createClass({
@@ -11,7 +13,8 @@ var React   = require('react');
         getInitialState: function() {
             return {
                 percentage: 15,
-                amount: 0
+                amount: 0,
+                people: 1
             };
         },
 
@@ -23,37 +26,58 @@ var React   = require('react');
             this.setState({ amount: +value });
         },
 
+        handlePeople: function(value) {
+            this.setState({ people: value });
+        },
+
         getTipAmount: function() {
-            return (this.state.amount * this.state.percentage / 100).toFixed(2);
+            return ((this.state.amount / this.state.people) * this.state.percentage / 100).toFixed(2);
         },
 
         getTotalAmount: function() {
-            return (parseFloat(this.state.amount) + parseFloat(this.getTipAmount())).toFixed(2);
+            console.log(this.state.amount, this.state.people);
+            return (
+                (parseFloat(this.state.amount) / (parseFloat(this.state.people))
+            ) + parseFloat(this.getTipAmount())).toFixed(2);
         },
 
         render: function() {
             return (
-                <Segment className="tall stacked">
-                    <Header>Tip Calculator</Header>
+                <Segment className="tall piled">
+                    <Header>
+                        <Icon className="calculator" />
+                        <div className="content">
+                            Tip Calculator
+                        </div>
+                    </Header>
                     <Divider />
 
                     <div className="ui form">
-
-                        <div className="field">
-                            <Amount onChange={this.handleAmount} />
+                        <div className="two fields">
+                            <div className="ten wide field">
+                                <Amount onChange={this.handleAmount} />
+                            </div>
+                            <div className="six wide field">
+                                <People defaultValue={this.state.people} onChange={this.handlePeople} />
+                            </div>
                         </div>
-
                         <div className="field">
                             <Tip defaultValue={this.state.percentage} onChange={this.handlePercentage} />
                         </div>
-
-                        <Header>Tip</Header>
                         <Divider />
-                        ${this.getTipAmount()}
 
-                        <Header>Total</Header>
-                        <Divider />
-                        ${this.getTotalAmount()}
+                        <div className="two fields">
+                            <div className="field">
+                                <Header>Tip</Header>
+                                <Divider />
+                                ${this.getTipAmount()}
+                            </div>
+                            <div className="field">
+                                <Header>Total</Header>
+                                <Divider />
+                                ${this.getTotalAmount()}
+                            </div>
+                        </div>
                     </div>
                 </Segment>
             );
