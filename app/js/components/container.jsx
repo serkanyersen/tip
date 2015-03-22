@@ -7,6 +7,7 @@ var React   = require('react');
     Amount  = require('./amount.jsx'),
     People  = require('./people.jsx'),
     Tip     = require('./tip.jsx'),
+    AppHeader = require('./app-header.jsx'),
 
     Container = React.createClass({
 
@@ -48,13 +49,7 @@ var React   = require('react');
 
             return (
                 <Segment className="tall piled">
-                    <Header>
-                        <div className="content">
-                            Tip Calculator
-                        </div>
-                    </Header>
-                    <Divider />
-
+                    <AppHeader />
                     <div className="ui grid">
                         <div className="ten wide column">
                             <Amount onChange={this.handleAmount} />
